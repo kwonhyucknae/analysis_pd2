@@ -1,4 +1,4 @@
-import collect.crawler
+import analysis_pd.collect.crawler as cr
 import analyze
 import visualize
 
@@ -9,8 +9,9 @@ if __name__=='__main__':
 
     ]
 
-    collect.crawler.crawling(district1='부산광역시',start_year=2012,end_year=2012)
+    #collect.crawler.crawling(district1='부산광역시',start_year=2012,end_year=2012)
     #데이터 수집 (collection)
+    cr.crawling('부산광역시', 2012, 2013)
     '''
     for item in items:
         collect.crawler.crawling(**item)

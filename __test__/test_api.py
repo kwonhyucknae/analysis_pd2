@@ -14,6 +14,7 @@ response_body = urlopen(request).read()
 print(response_body)
 '''
 '''
+#url 어떻게 만드는지 테스트
 
 url = pdapi.pd_gen_url(
 'http://openapi.tour.go.kr/openapi/service/TourismResourceStatsService/getPchrgTrrsrtVisitorList',
@@ -30,6 +31,7 @@ print(url)
 '''
 for items in pdapi.pd_fetch_tourspot_visitor(district1='부산광역시', year=2012, month=1):
     print(items)
+
 
 
 #tesst=ttt.html_request(url='http://openapi.tour.go.kr/openapi/service/TourismResourceStatsService/getPchrgTrrsrtVisitorList')

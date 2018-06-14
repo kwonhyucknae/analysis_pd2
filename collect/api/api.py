@@ -2,6 +2,7 @@
 from urllib.parse import urlencode
 from .web_request import json_request
 
+
 SERVICE_KEY="TcT8vNWNinn6x5x7xrHsIv31tV5ls12XFGRfo5kByPx1RLH7GV3Y3Dj970BzXFALNPHcKsw3Qq0yHkDUdebQ4w%3D%3D"
 BASE_URL_FB_API= "https://openapi.tour.go.kr/openapi/service/TourismResourceStatsService/getPchrgTrrsrtVisitorList"
 
@@ -12,10 +13,16 @@ BASE_URL_FB_API= "https://openapi.tour.go.kr/openapi/service/TourismResourceStat
 
 
 
+def pd_gen_travel_url(endpoint,**params):
+    url='%s?%s' % (endpoint,urlencode(params))
+    return url
 
 
 
 
+
+
+## 여기는 유료 관광지 정보
 def pd_gen_url(endpoint,**params):
     url='%s?%s'%(endpoint,urlencode(params))
     return url+"&serviceKey="+SERVICE_KEY
@@ -45,13 +52,21 @@ def pd_fetch_tourspot_visitor(district1='', district2='', tourspot='', year=0, m
     print("paging=", response)
     body = None if response is None else response.get('body')
     items = None if body is None else body.get('items')
-    item=None if items is None else items.get('item')
 
-    print("item==",item)
-    print("item 길이 ",len(item))
+
+    try:
+
+        item=None if items is None else items.get('item')
+        yield item
+    except AttributeError:
+        pass
+
+    #print(type(item))
+    #print("item==",item)
+    #print("item 길이 ",len(item))
 
     csForCnt=0
-    return item
+    #return item
 
 
     '''
